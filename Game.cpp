@@ -48,8 +48,6 @@ bool Game::Input()
 	}
 	
 	int state = SDL_GetMouseState(&mouse.x, &mouse.y);
-	rx = mouse.x - cx;
-	ry = -(mouse.y - cy);
 	mouse.left = state & SDL_BUTTON(SDL_BUTTON_LEFT);
 	mouse.middle = state & SDL_BUTTON(SDL_BUTTON_MIDDLE);
 	mouse.right = state & SDL_BUTTON(SDL_BUTTON_RIGHT);
@@ -61,7 +59,9 @@ bool Game::Update()
 	//Read Input
 	if (!Input())	return true;
 
-	//Process Input
+	//Logic
+	rx = mouse.x - cx;
+	ry = -(mouse.y - cy);
 	alpha = atan2(ry, rx);
 
 	return false;
